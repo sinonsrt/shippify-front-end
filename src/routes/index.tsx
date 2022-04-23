@@ -1,3 +1,4 @@
+import { NavBar } from "components/NavBar";
 import {
   BrowserRouter as Router,
   Routes,
@@ -9,6 +10,7 @@ import { Home } from "../pages/Home";
 export const AppRoutes = () => {
   return (
     <Router>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Navigate to="/" />} />
