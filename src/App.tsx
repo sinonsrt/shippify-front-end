@@ -1,9 +1,10 @@
 import { AppRoutes } from "./routes";
-import { Theme } from "./themes";
+import { GlobalStyes, Theme } from "./themes";
 
 export const App = () => {
   return (
     <Theme>
+      <GlobalStyes />
       <AppRoutes />
     </Theme>
   );

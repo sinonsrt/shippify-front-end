@@ -15,8 +15,10 @@ const theme = {
   colors,
 };
 
+export type ThemeType = typeof theme;
+
 interface ThemeProps {
-  children: JSX.Element;
+  children: JSX.Element[];
 }
 
 export const Theme: React.FC<ThemeProps> = ({ children }) => {
