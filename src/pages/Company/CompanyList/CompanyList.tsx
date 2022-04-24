@@ -54,7 +54,7 @@ export const CompanyList = () => {
       <CreateButtonContainer>
         <Button variant="success" className="mt-5">
           <ButtonLink to={"/companyForm"}>
-            Create a new <MdOutlineCreateNewFolder />
+            new Company <MdOutlineCreateNewFolder />
           </ButtonLink>
         </Button>
       </CreateButtonContainer>

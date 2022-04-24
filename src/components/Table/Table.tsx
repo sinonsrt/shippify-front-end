@@ -4,7 +4,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { GrUpdate } from "react-icons/gr";
 
 interface ITableProps {
-  handleDeleteButton: any;
+  handleDeleteButton?: any;
   tableTitle: string;
   headers: any[];
   tableDataRows: any[];
@@ -38,12 +38,14 @@ export const Table: React.FC<ITableProps> = ({
                     <Button variant="primary" className="me-1">
                       <GrUpdate />
                     </Button>
-                    <Button
-                      variant="danger"
-                      onClick={() => handleDeleteButton(dataRows[1])}
-                    >
-                      <FaRegTrashAlt />
-                    </Button>
+                    {handleDeleteButton && (
+                      <Button
+                        variant="danger"
+                        onClick={() => handleDeleteButton(dataRows[1])}
+                      >
+                        <FaRegTrashAlt />
+                      </Button>
+                    )}
                   </td>
                 </tr>
               );
