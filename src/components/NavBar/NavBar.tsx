@@ -18,9 +18,9 @@ export const NavBar = () => {
         <LeftContainer>
           <NavbarLinkContainer>
             <NavBarLink to={"/"}> Home </NavBarLink>
-            <NavBarLink to={"/"}> Company </NavBarLink>
-            <NavBarLink to={"/"}> Driver </NavBarLink>
-            <NavBarLink to={"/"}> Vehicle </NavBarLink>
+            <NavBarLink to={"/companiesList"}> Company </NavBarLink>
+            <NavBarLink to={"/driversList"}> Driver </NavBarLink>
+            <NavBarLink to={"/vehiclesList"}> Vehicle </NavBarLink>
           </NavbarLinkContainer>
         </LeftContainer>
         <RightContainer>
