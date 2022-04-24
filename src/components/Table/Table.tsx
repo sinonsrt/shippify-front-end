@@ -1,28 +1,24 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import { TableTitle } from "./Table.style";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { GrUpdate } from "react-icons/gr";
 
 interface ITableProps {
+  handleDeleteButton: any;
+  tableTitle: string;
   headers: any[];
-  data: any[];
+  tableDataRows: any[];
 }
 
-export const Table: React.FC<ITableProps> = ({ headers, data }) => {
-  const [contents, setContents] = useState<any[]>([]);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const convertDataValuesInArray = () => {
-    const rowsObjects: any[] = [];
-    data.forEach((row) => {
-      rowsObjects.push(Object.values(row));
-    });
-
-    setContents(rowsObjects);
-  };
-
-  console.log(contents);
-
+export const Table: React.FC<ITableProps> = ({
+  handleDeleteButton,
+  tableTitle,
+  headers,
+  tableDataRows,
+}) => {
   return (
     <div className="container">
+      <TableTitle>{tableTitle} </TableTitle>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -31,14 +27,24 @@ export const Table: React.FC<ITableProps> = ({ headers, data }) => {
           </tr>
         </thead>
         <tbody>
-          {contents &&
-            contents.map((content, index) => {
+          {tableDataRows &&
+            tableDataRows.map((dataRows, index) => {
               return (
                 <tr key={index}>
-                  <td>a</td>
-                  {/* {content[index].map((value: any, index: any) => (
+                  {dataRows.map((value: any, index: any) => (
                     <td key={index}>{value}</td>
-                  ))} */}
+                  ))}
+                  <td>
+                    <Button variant="primary" className="me-1">
+                      <GrUpdate />
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleDeleteButton(dataRows[1])}
+                    >
+                      <FaRegTrashAlt />
+                    </Button>
+                  </td>
                 </tr>
               );
             })}
