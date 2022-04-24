@@ -2,6 +2,7 @@ import Button from "react-bootstrap/Button";
 import { TableTitle } from "./Table.style";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { GrUpdate } from "react-icons/gr";
+import { Container } from "react-bootstrap";
 
 interface ITableProps {
   handleDeleteButton?: any;
@@ -17,7 +18,7 @@ export const Table: React.FC<ITableProps> = ({
   tableDataRows,
 }) => {
   return (
-    <div className="container">
+    <Container>
       <TableTitle>{tableTitle} </TableTitle>
       <table className="table table-striped">
         <thead>
@@ -52,6 +53,6 @@ export const Table: React.FC<ITableProps> = ({
             })}
         </tbody>
       </table>
-    </div>
+    </Container>
   );
 };

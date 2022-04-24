@@ -21,7 +21,7 @@ export const AppRoutes = () => {
         <Route path="/driversList" element={<DriverList />} />
         <Route path="/driversForm" element={<DriverForm />} />
         <Route path="/vehiclesList" element={<VehicleList />} />
-        <Route path="/vehiclesForm" element={<VehicleForm />} />
+        <Route path="/vehicleForm" element={<VehicleForm />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

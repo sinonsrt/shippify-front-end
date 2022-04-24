@@ -4,7 +4,7 @@ import { Button, Container, Form, InputGroup } from "react-bootstrap";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
 import { toast } from "react-toastify";
 import { api } from "services";
-import { ButtonLink, CreateButtonContainer } from "./VehicleList.style";
+import { ButtonLink, TopButtonContainer } from "./VehicleList.style";
 
 export const VehicleList = () => {
   const [rows, setRows] = useState<any>([]);
@@ -70,13 +70,13 @@ export const VehicleList = () => {
 
   return (
     <Container>
-      <CreateButtonContainer>
+      <TopButtonContainer>
         <Button variant="success" className="mt-5">
           <ButtonLink to={"/vehicleForm"}>
             new Vehicle <MdOutlineCreateNewFolder />
           </ButtonLink>
         </Button>
-      </CreateButtonContainer>
+      </TopButtonContainer>
       <InputGroup className="mb-3 mt-3">
         <Form.Select onChange={(e) => setSearch(Number(e.target.value))}>
           <option>Select a driver to filter...</option>
