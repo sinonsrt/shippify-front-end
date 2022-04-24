@@ -19,7 +19,7 @@ import { useFormik } from "formik";
 export const DriverForm = () => {
   const [companies, setCompanies] = useState<any[]>([]);
 
-  const createCompany = (values: object) => {
+  const createDriver = (values: object) => {
     api
       .post("drivers", values)
       .then((response) => toast.success("Successfully to create driver!"))
@@ -38,7 +38,7 @@ export const DriverForm = () => {
       status: "",
     },
     onSubmit: (values) => {
-      createCompany(values);
+      createDriver(values);
     },
   });
 

@@ -30,7 +30,6 @@ export const CompanyList = () => {
   };
 
   const handleDeleteButton = (id: number) => {
-    console.log("to passando " + id);
     api
       .delete(`companies/${id}`)
       .then(() => {

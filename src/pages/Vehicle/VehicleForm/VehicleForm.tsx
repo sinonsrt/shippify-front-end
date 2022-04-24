@@ -20,7 +20,7 @@ import { useFormik } from "formik";
 export const VehicleForm = () => {
   const [drivers, setDrivers] = useState<any[]>([]);
 
-  const createCompany = (values: object) => {
+  const createVehicle = (values: object) => {
     api
       .post("vehicles", values)
       .then((response) => toast.success("Successfully to create vehicle!"))
@@ -36,7 +36,7 @@ export const VehicleForm = () => {
       capacity: "",
     },
     onSubmit: (values) => {
-      createCompany(values);
+      createVehicle(values);
     },
   });
 
