@@ -40,6 +40,7 @@ export const CompanyList = () => {
   };
 
   useEffect(() => {
+    console.log("passando");
     api
       .get("companies")
       .then((response) => {
@@ -58,6 +59,7 @@ export const CompanyList = () => {
         </Button>
       </CreateButtonContainer>
       <Table
+        formType="companyForm"
         handleDeleteButton={handleDeleteButton}
         tableTitle="Companies"
         headers={companiesHeaders}

@@ -15,14 +15,28 @@ import { AiOutlineUnorderedList } from "react-icons/ai";
 import { api } from "services";
 import { toast } from "react-toastify";
 import { useFormik } from "formik";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export const CompanyForm = () => {
+  const [action, setAction] = useState<string>("create");
   const createCompany = (values: object) => {
     api
       .post("companies", values)
       .then((response) => toast.success("Successfully to create company!"))
       .catch((error) => toast.error("Error to create company!"));
   };
+  const updateCompany = (id: number, values: object) => {
+    api
+      .put(`companies/${id}`, values)
+      .then((response) => toast.success("Successfully to update company!"))
+      .catch((error) => {
+        console.log(error);
+        toast.error("Error to update company!");
+      });
+  };
+
+  const { id } = useParams();
 
   const formik = useFormik({
     initialValues: {
@@ -32,9 +46,33 @@ export const CompanyForm = () => {
       plan_type: "",
     },
     onSubmit: (values) => {
-      createCompany(values);
+      if (action === "create") {
+        createCompany(values);
+      } else {
+        updateCompany(Number(id), values);
+      }
+      window.location.replace("/companiesList");
     },
   });
+
+  useEffect(() => {
+    if (id) {
+      api
+        .get(`companies/${id}`)
+        .then((response) => {
+          formik.setValues({
+            name: response.data.name,
+            city: response.data.city,
+            status: response.data.status,
+            plan_type: response.data.plan_type,
+          });
+
+          setAction("update");
+        })
+        .catch(() => toast.error("Error to get company!"));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   return (
     <Container>
@@ -55,7 +93,7 @@ export const CompanyForm = () => {
             aria-describedby="name"
             id="name"
             type="name"
-            value={formik.values.city}
+            value={formik.values.name}
             onChange={formik.handleChange}
           />
         </InputGroup>

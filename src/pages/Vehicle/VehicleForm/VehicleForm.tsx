@@ -15,10 +15,12 @@ import { AiOutlineUnorderedList } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { api } from "services";
 import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 import { useFormik } from "formik";
 
 export const VehicleForm = () => {
   const [drivers, setDrivers] = useState<any[]>([]);
+  const [action, setAction] = useState<string>("create");
 
   const createVehicle = (values: object) => {
     api
@@ -26,6 +28,18 @@ export const VehicleForm = () => {
       .then((response) => toast.success("Successfully to create vehicle!"))
       .catch((error) => toast.error("Error to create vehicle!"));
   };
+
+  const updateVehicle = (id: number, values: object) => {
+    api
+      .put(`vehicles/${id}`, values)
+      .then((response) => toast.success("Successfully to update vehicle!"))
+      .catch((error) => {
+        console.log(error);
+        toast.error("Error to update vehicle!");
+      });
+  };
+
+  const { id } = useParams();
 
   const formik = useFormik({
     initialValues: {
@@ -36,7 +50,12 @@ export const VehicleForm = () => {
       capacity: "",
     },
     onSubmit: (values) => {
-      createVehicle(values);
+      if (action === "create") {
+        createVehicle(values);
+      } else {
+        updateVehicle(Number(id), values);
+      }
+      window.location.replace("/vehiclesList");
     },
   });
 
@@ -48,6 +67,29 @@ export const VehicleForm = () => {
       })
       .catch((error) => toast.error("Error to consult drivers!"));
   });
+
+  useEffect(() => {
+    if (id) {
+      api
+        .get(`vehicles/${id}`)
+        .then((response) => {
+          formik.setValues({
+            driver_id: response.data.driver,
+            plate: response.data.plate,
+            model: response.data.model,
+            type: response.data.type,
+            capacity: response.data.capacity,
+          });
+
+          setAction("update");
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Error to get vehicle!");
+        });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   return (
     <Container>

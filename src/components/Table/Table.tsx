@@ -1,17 +1,18 @@
-import Button from "react-bootstrap/Button";
 import { TableTitle } from "./Table.style";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { Container, Button } from "react-bootstrap";
 import { GrUpdate } from "react-icons/gr";
-import { Container } from "react-bootstrap";
 
 interface ITableProps {
   handleDeleteButton?: any;
+  formType?: string;
   tableTitle: string;
   headers: any[];
   tableDataRows: any[];
 }
 
 export const Table: React.FC<ITableProps> = ({
+  formType,
   handleDeleteButton,
   tableTitle,
   headers,
@@ -37,7 +38,9 @@ export const Table: React.FC<ITableProps> = ({
                   ))}
                   <td>
                     <Button variant="primary" className="me-1">
-                      <GrUpdate />
+                      <a href={`/${formType}/${dataRows[1]}`}>
+                        <GrUpdate />
+                      </a>
                     </Button>
                     {handleDeleteButton && (
                       <Button

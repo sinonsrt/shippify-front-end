@@ -18,10 +18,12 @@ export const AppRoutes = () => {
         <Route path="/" element={<Home />} />
         <Route path="/companiesList" element={<CompanyList />} />
         <Route path="/companyForm" element={<CompanyForm />} />
+        <Route path="/companyForm/:id" element={<CompanyForm />} />
         <Route path="/driversList" element={<DriverList />} />
         <Route path="/driverForm" element={<DriverForm />} />
         <Route path="/vehiclesList" element={<VehicleList />} />
         <Route path="/vehicleForm" element={<VehicleForm />} />
+        <Route path="/vehicleForm/:id" element={<VehicleForm />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
