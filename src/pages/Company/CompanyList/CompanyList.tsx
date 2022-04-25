@@ -59,6 +59,7 @@ export const CompanyList = () => {
         </Button>
       </CreateButtonContainer>
       <Table
+        handleUpdateButton={true}
         formType="companyForm"
         handleDeleteButton={handleDeleteButton}
         tableTitle="Companies"

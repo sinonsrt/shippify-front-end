@@ -90,6 +90,7 @@ export const VehicleList = () => {
         </Form.Select>
       </InputGroup>
       <Table
+        handleUpdateButton={true}
         formType="vehicleForm"
         handleDeleteButton={handleDeleteButton}
         tableTitle="Vehicles"

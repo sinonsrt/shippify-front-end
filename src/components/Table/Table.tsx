@@ -4,6 +4,7 @@ import { Container, Button } from "react-bootstrap";
 import { GrUpdate } from "react-icons/gr";
 
 interface ITableProps {
+  handleUpdateButton?: boolean;
   handleDeleteButton?: any;
   formType?: string;
   tableTitle: string;
@@ -13,6 +14,7 @@ interface ITableProps {
 
 export const Table: React.FC<ITableProps> = ({
   formType,
+  handleUpdateButton,
   handleDeleteButton,
   tableTitle,
   headers,
@@ -37,11 +39,13 @@ export const Table: React.FC<ITableProps> = ({
                     <td key={index}>{value}</td>
                   ))}
                   <td>
-                    <Button variant="primary" className="me-1">
-                      <a href={`/${formType}/${dataRows[1]}`}>
-                        <GrUpdate />
-                      </a>
-                    </Button>
+                    {handleUpdateButton && (
+                      <Button variant="primary" className="me-1">
+                        <a href={`/${formType}/${dataRows[1]}`}>
+                          <GrUpdate />
+                        </a>
+                      </Button>
+                    )}
                     {handleDeleteButton && (
                       <Button
                         variant="danger"
